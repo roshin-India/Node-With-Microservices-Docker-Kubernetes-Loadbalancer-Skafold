@@ -7,7 +7,7 @@ app.use(express.static("public")); //Available content from folder public to roo
 
 async function go() {
   let client = new MongoClient(
-    "mongodb+srv://roshinkm:roshinkm@clusterroshin.zadwabq.mongodb.net/TodoApp?retryWrites=true&w=majority"
+    "mongodb+srv://username:name@clustertest.ddgvz.mongodb.net/TestTodoApp?retryWrites=true&w=majority"
   );
   client.connect();
   db = client.db();
