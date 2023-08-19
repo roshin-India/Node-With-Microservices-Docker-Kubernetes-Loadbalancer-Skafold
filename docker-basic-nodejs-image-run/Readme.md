@@ -9,3 +9,6 @@ docker exec -it <cid> sh
 
 //To show all container files
 docker ps
+
+//To log container
+docker log <cid>
