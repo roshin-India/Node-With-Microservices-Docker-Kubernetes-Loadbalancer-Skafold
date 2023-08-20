@@ -116,10 +116,57 @@ kubectl logs <podname>
 docker build -t roshin/name .
 docker push roshin/name
 
-kubectl apply -f .\name-depl.yaml  
+kubectl apply -f .\name-depl.yaml
 kubectl get deployment
 kubectl rollout restart deployment <deployment-name>
 kubectl get pods
 kubectl logs <pod-name>
+
+```
+
+### Kubernetes services nodeport and clusterip
+
+```
+kubectl apply -f .\name-srv.yaml
+//Get service name and nodeport port
+kubectl get services
+kubectl describe service <service-name>
+
+//Create a nodeport service to access node port from externsl like localhost:30744/posts
+//Create clusterip for connecting different pods
+//Make sure that generated cluster ip name need to replace with localhost like htttp://post-clusterip-srv:30714/posts in nodejs file
+//First check nodeport is working fine from post-man http://localhost:30744/posts
+If we return data then check log from services run:
+kubectl get pods
+kubectl logs <pod-name>
+
+//To apply all the config yaml file with one single command inside a k8s folder
+kubectl apply -f .
+
+```
+
+## loadbalancer & ingress
+
+```
+//GO to these site
+https://kubernetes.github.io/ingress-nginx/deploy/#quick-start
+//Run these cmd:
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.8.1/deploy/static/provider/cloud/deploy.yaml
+
+kubectl apply -f ingress-srv.yaml
+
+
+```
+
+## Skaffold
+
+```
+// Go to https://skaffold.dev/docs/install/
+choco install -y skaffold
+//Watch all yamal file inside k8s folder
+//Create depoly object when skaffold up and delete all the config object associated kubernetes  whenever we stop sakffold
+//Automaticalyy detect any file changes and create build and deploy
+//create skaffolf.yaml file from root directory and run:
+skaffold dev
 
 ```
